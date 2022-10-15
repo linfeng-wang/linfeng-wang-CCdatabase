@@ -4,8 +4,6 @@ DESCRIPTION : Parsing full database of DrugBank to extract information
                 about drugs that affects a specific organism.
                 Information retrieved:
                     - name
-                    - synonyms
-                    - classification (kingdom and superfamily)
                     - drug-interactions (with other drugs)
                     - external-identifiers (to connect to other sources)
                     - pathways
