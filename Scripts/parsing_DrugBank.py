@@ -32,7 +32,7 @@ class Drug:
         #self.kingdom = features['kgd']
         #self.superclass = features['sclass']
         self.interaction = features['itrc']
-        #self.external_id = features['ext_id']
+        self.external_id = features['ext_id']
         self.pathways = features['pathways']
         self.mechanism_of_action = features['mechanism_of_action']
         self.metabolism = features['metabolism']
@@ -52,7 +52,7 @@ class Drug:
                     #"dg_kingdom":self.kingdom,
                     #"dg_superclass":self.superclass,
                     "dg_interactions":self.interaction,
-                    #"dg_ext_id":self.external_id,
+                    "dg_ext_id":self.external_id,
                     "dg_pathways":self.pathways,
                     "dg_mechanism_of_action": self.mechanism_of_action,
                     "dg_metabolism" : self.metabolism,
@@ -191,7 +191,7 @@ for i in tqdm(range(len(drugs))):
                 #"kgd":drug_class_kingdom,
                 #"sclass":drug_class_superclass,
                 "itrc":drug_interaction,
-                #"ext_id":drug_external_id,
+                "ext_id":drug_external_id,
                 "pathways": drug_pathway,
                 "mechanism_of_action" : drug_mechanism_of_action,
                 "metabolism" : drug_metabolism,
@@ -200,8 +200,8 @@ for i in tqdm(range(len(drugs))):
                 "protein_binding" : drug_protein_binding,
                 "atc_codes" : drug_atc_codes,
                 "enzyme_list" : enzyme_list,
-                "carriers_list": carrier_list,
-                "transporters_list" : transporter_list
+                "carrier_list": carrier_list,
+                "transporter_list" : transporter_list
                 }
     
     drug = Drug(drug_dict)
