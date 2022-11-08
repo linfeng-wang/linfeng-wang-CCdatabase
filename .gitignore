@@ -2,4 +2,11 @@
 *.csv
 *.sql
 *.txt
+*.h5
 hotnet2-master/
+DB/
+venv/
+hotnet_output/
+hotnet_input/ 
+test/
+# find . -type f -size +99MB
