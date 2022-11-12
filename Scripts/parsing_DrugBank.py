@@ -44,6 +44,8 @@ class Drug:
         self.enzyme_list = features['enzyme_list']
         self.carrier_list = features['carrier_list']
         self.transporter_list = features['transporter_list']
+        self.pdb_list = features['pdb_list']
+        
 
     def getDrugfeatures(self):
         drug_dict = {"dg_id":self.id,
@@ -62,7 +64,9 @@ class Drug:
                     "dg_atc_codes" : self.atc_codes,
                     "dg_enzyme_list" : self.enzyme_list,
                     "dg_carrier_list" : self.carrier_list,
-                    "dg_transporter_list" : self.transporter_list
+                    "dg_transporter_list" : self.transporter_list,
+                    "dg_pdb_list" : self.pdb_list
+
                     }
         
         return drug_dict
@@ -183,6 +187,14 @@ for i in tqdm(range(len(drugs))):
                     if "name" in str(x):
                         transporter_list.append(x.text)
             transporter_list = ';'.join([c for c in transporter_list])
+            
+        if 'pdb-entries' in str(feature):
+            pdb_list = []
+            for x in feature:
+                pdb_list.append(x.text)
+            pdb_list = ';'.join([c for c in pdb_list])
+            if len(pdb_list)==0:
+                pdb_list = 'Nan'  
 
     # get all drug-related information in a dictionary
     drug_dict = {"id":idDB,
@@ -201,7 +213,8 @@ for i in tqdm(range(len(drugs))):
                 "atc_codes" : drug_atc_codes,
                 "enzyme_list" : enzyme_list,
                 "carrier_list": carrier_list,
-                "transporter_list" : transporter_list
+                "transporter_list" : transporter_list,
+                "pdb_list" : pdb_list
                 }
     
     drug = Drug(drug_dict)
@@ -268,14 +281,18 @@ for i in tqdm(range(len(drugs))):
                         "atc_codes" : drug.atc_codes,
                         "enzymes" : drug.enzyme_list,
                         "carriers" : drug.carrier_list,
-                        "transporters" : drug.transporter_list
+                        "transporters" : drug.transporter_list,
+                        "pdb_list" : drug.pdb_list
                         }
 
                 drug_targets.append(row)
-
-
 dt = pd.DataFrame.from_dict(drug_targets, orient='columns')
 dt.shape
+dt.to_csv(saveFile)
+
+# %%
+drug.protein_binding
+# %%
 dt.to_csv(saveFile)
 
 # %%
